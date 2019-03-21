@@ -1,4 +1,4 @@
-package com.example.demo.models;
+package com.models;
 
 
 import javax.persistence.Entity;

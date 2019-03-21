@@ -1,4 +1,4 @@
-package com.example.demo;
+package com;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,10 +6,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.demo.models.Role;
-import com.example.demo.models.Utilisateur;
-import com.example.demo.repository.RoleRepository;
-import com.example.demo.repository.UtilisateurRepository;
+import com.models.Role;
+import com.models.Utilisateur;
+import com.repositories.RoleRepository;
+import com.repositories.UtilisateurRepository;
 
 
 @SpringBootApplication
