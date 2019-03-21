@@ -13,40 +13,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.models.Role;
-import com.repositories.RoleRepository;
+import com.models.Competence;
+import com.repositories.CompetenceRepository;
 
 
 @RestController
-@RequestMapping("/Role")
-public class RoleController {
+@RequestMapping("/Competence")
+public class CompetenceController {
 
 	@Autowired 
-	private RoleRepository ro; 
+	private CompetenceRepository cr; 
 	
 	@GetMapping("/list")
-	public List<Role>getRoles(){
-		return ro.findAll();
+	public List<Competence>getCompetences(){
+		return cr.findAll();
 	}
 	
 	@GetMapping("/list/{id}")
-	public Optional<Role> getRole(@PathVariable Long id){
-		return ro.findById(id);
+	public Optional<Competence> getCompetence(@PathVariable Long id){
+		return cr.findById(id);
 	}
 	
 	@PostMapping("/save")
-	public Role createRole(@RequestBody Role R){
-		return ro.save(R);
+	public Competence createCompetence(@RequestBody Competence c){
+		return cr.save(c);
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public Boolean deleteRole(@PathVariable Long id){
-		ro.deleteById(id);
+	public Boolean deleteCompetence(@PathVariable Long id){
+		cr.deleteById(id);
 		return true;
 	}
 	
 	@PutMapping("/update")
-	public Role updateRole(@RequestBody Role r){
-		return ro.save(r);
+	public Competence updateCompetence(@RequestBody Competence c){
+		return cr.save(c);
 	}
 }

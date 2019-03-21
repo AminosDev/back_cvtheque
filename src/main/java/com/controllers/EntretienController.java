@@ -13,40 +13,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.models.Role;
-import com.repositories.RoleRepository;
+import com.models.Entretien;
+import com.repositories.EntretienRepository;
 
 
 @RestController
-@RequestMapping("/Role")
-public class RoleController {
+@RequestMapping("/Entretien")
+public class EntretienController {
 
 	@Autowired 
-	private RoleRepository ro; 
+	private EntretienRepository ep; 
 	
 	@GetMapping("/list")
-	public List<Role>getRoles(){
-		return ro.findAll();
+	public List<Entretien>getEntretiens(){
+		return ep.findAll();
 	}
 	
 	@GetMapping("/list/{id}")
-	public Optional<Role> getRole(@PathVariable Long id){
-		return ro.findById(id);
+	public Optional<Entretien> getEntretien(@PathVariable Long id){
+		return ep.findById(id);
 	}
 	
 	@PostMapping("/save")
-	public Role createRole(@RequestBody Role R){
-		return ro.save(R);
+	public Entretien createEntretien(@RequestBody Entretien e){
+		return ep.save(e);
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public Boolean deleteRole(@PathVariable Long id){
-		ro.deleteById(id);
+	public Boolean deleteEntretien(@PathVariable Long id){
+		ep.deleteById(id);
 		return true;
 	}
 	
 	@PutMapping("/update")
-	public Role updateRole(@RequestBody Role r){
-		return ro.save(r);
+	public Entretien updateEntretien(@RequestBody Entretien e){
+		return ep.save(e);
 	}
 }

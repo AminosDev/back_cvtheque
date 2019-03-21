@@ -13,40 +13,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.models.Role;
-import com.repositories.RoleRepository;
+import com.models.NiveauEtude;
+import com.repositories.NiveauEtudeRepository;
 
 
 @RestController
-@RequestMapping("/Role")
-public class RoleController {
+@RequestMapping("/NiveauEtude")
+public class NiveauEtudeController {
 
 	@Autowired 
-	private RoleRepository ro; 
+	private NiveauEtudeRepository np; 
 	
 	@GetMapping("/list")
-	public List<Role>getRoles(){
-		return ro.findAll();
+	public List<NiveauEtude>getNiveauEtudes(){
+		return np.findAll();
 	}
 	
 	@GetMapping("/list/{id}")
-	public Optional<Role> getRole(@PathVariable Long id){
-		return ro.findById(id);
+	public Optional<NiveauEtude> getNiveauEtude(@PathVariable Long id){
+		return np.findById(id);
 	}
 	
 	@PostMapping("/save")
-	public Role createRole(@RequestBody Role R){
-		return ro.save(R);
+	public NiveauEtude createNiveauEtude(@RequestBody NiveauEtude n){
+		return np.save(n);
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public Boolean deleteRole(@PathVariable Long id){
-		ro.deleteById(id);
+	public Boolean deleteNiveauEtude(@PathVariable Long id){
+		np.deleteById(id);
 		return true;
 	}
 	
 	@PutMapping("/update")
-	public Role updateRole(@RequestBody Role r){
-		return ro.save(r);
+	public NiveauEtude updateNiveauEtude(@RequestBody NiveauEtude n){
+		return np.save(n);
 	}
 }

@@ -13,40 +13,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.models.Role;
-import com.repositories.RoleRepository;
+import com.models.Formation;
+import com.repositories.FormationRepository;
 
 
 @RestController
-@RequestMapping("/Role")
-public class RoleController {
+@RequestMapping("/Formation")
+public class FormationController {
 
 	@Autowired 
-	private RoleRepository ro; 
+	private FormationRepository fp; 
 	
 	@GetMapping("/list")
-	public List<Role>getRoles(){
-		return ro.findAll();
+	public List<Formation>getFormations(){
+		return fp.findAll();
 	}
 	
 	@GetMapping("/list/{id}")
-	public Optional<Role> getRole(@PathVariable Long id){
-		return ro.findById(id);
+	public Optional<Formation> getFormation(@PathVariable Long id){
+		return fp.findById(id);
 	}
 	
 	@PostMapping("/save")
-	public Role createRole(@RequestBody Role R){
-		return ro.save(R);
+	public Formation createFormation(@RequestBody Formation f){
+		return fp.save(f);
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public Boolean deleteRole(@PathVariable Long id){
-		ro.deleteById(id);
+	public Boolean deleteFormation(@PathVariable Long id){
+		fp.deleteById(id);
 		return true;
 	}
 	
 	@PutMapping("/update")
-	public Role updateRole(@RequestBody Role r){
-		return ro.save(r);
+	public Formation updateFormation(@RequestBody Formation f){
+		return fp.save(f);
 	}
 }

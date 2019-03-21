@@ -17,14 +17,13 @@ import com.models.Utilisateur;
 import com.repositories.UtilisateurRepository;
 
 
-
 @RestController
-@RequestMapping("/utilisateurs")
+@RequestMapping("/Utilisateur")
 public class UtilisateurController {
 
 	
 	@Autowired
-	private UtilisateurRepository ur ;
+	private UtilisateurRepository ur;
 	
 	@GetMapping("/list")
 	public List<Utilisateur> getUtilisateur(){
@@ -35,10 +34,12 @@ public class UtilisateurController {
 	public Optional<Utilisateur> getUser(@PathVariable Long id){
 		return ur.findById(id);
 	}
+	
 	@PostMapping("/save")
 	public Utilisateur createUser(@RequestBody Utilisateur u){
 		return ur.save(u);
 	}
+	
 	@DeleteMapping("/delete/{id}")
 	public Boolean deleteUtilisateur(@PathVariable Long id){
 		ur.deleteById(id);
