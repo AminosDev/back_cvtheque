@@ -2,6 +2,9 @@ package com.models;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Manager extends Utilisateur{
 
 	public Manager() {

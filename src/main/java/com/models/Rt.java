@@ -5,13 +5,14 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+@Entity
 public class Rt extends Utilisateur{
 
 	@ManyToMany
 	@JoinTable(
 	name = "rt_competence", 
-	joinColumns = @JoinColumn(name = "id_rt"), 
-	inverseJoinColumns = @JoinColumn(name = "id_competence"))
+	joinColumns = {@JoinColumn(name = "id_rt")}, 
+	inverseJoinColumns = {@JoinColumn(name = "id_competence")})
     Set<Competence> competences;
 
 	public Set<Competence> getCompetences() {
