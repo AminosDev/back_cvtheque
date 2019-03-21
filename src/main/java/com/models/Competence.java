@@ -1,9 +1,13 @@
 package com.models;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Competence {
@@ -13,6 +17,20 @@ public class Competence {
 	private long id_competence; 
 	private String competence;
 	
+	@ManyToMany(mappedBy = "competences")
+	Set<Rt> rts;
+	
+	@OneToMany(mappedBy = "competence")
+    Set<CompetenceRating> ratings;
+		
+	public Set<Rt> getRts() {
+		return rts;
+	}
+
+	public void setRts(Set<Rt> rts) {
+		this.rts = rts;
+	}
+
 	public long getId_competence() {
 		return id_competence;
 	}

@@ -1,11 +1,14 @@
 package com.models;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Candidat {
@@ -23,6 +26,20 @@ public class Candidat {
 	private String telephone;
 	private int situation_famille;
 	
+	@OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
+    private Set<Entretien> entretiens;
+	
+	@OneToMany(mappedBy = "candidat")
+    Set<CompetenceRating> ratings;
+	
+	public Set<Entretien> getEntretiens() {
+		return entretiens;
+	}
+
+	public void setEntretiens(Set<Entretien> entretiens) {
+		this.entretiens = entretiens;
+	}
+
 	public long getId_condidat() {
 		return id_condidat;
 	}

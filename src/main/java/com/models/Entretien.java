@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Entretien {
@@ -17,6 +19,42 @@ public class Entretien {
 	private int lu;
 	private String remarque;
 	
+	@ManyToOne
+	@JoinColumn(name="id_entretienstatut")
+	private EntretienStatut entretienstatut;
+	
+	@ManyToOne
+	@JoinColumn(name="id_utilisateur")
+	private Utilisateur utilisateur;
+	
+	@ManyToOne
+	@JoinColumn(name="id_candidat")
+	private Candidat candidat;
+	
+	public Candidat getCandidat() {
+		return candidat;
+	}
+
+	public void setCandidat(Candidat candidat) {
+		this.candidat = candidat;
+	}
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+	public EntretienStatut getEntretienstatut() {
+		return entretienstatut;
+	}
+
+	public void setEntretienstatut(EntretienStatut entretienstatut) {
+		this.entretienstatut = entretienstatut;
+	}
+
 	public long getId_entretien() {
 		return id_entretien;
 	}
@@ -49,11 +87,15 @@ public class Entretien {
 		this.remarque = remarque;
 	}
 	
-	public Entretien(Date date_entretien, int lu, String remarque) {
+	public Entretien(Date date_entretien, int lu, String remarque, EntretienStatut entretienstatut,
+			Utilisateur utilisateur, Candidat candidat) {
 		super();
 		this.date_entretien = date_entretien;
 		this.lu = lu;
 		this.remarque = remarque;
+		this.entretienstatut = entretienstatut;
+		this.utilisateur = utilisateur;
+		this.candidat = candidat;
 	}
 	
 	public Entretien() {
