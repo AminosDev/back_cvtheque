@@ -2,7 +2,9 @@ package com.models;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,8 +29,6 @@ public class Candidat {
 	private String telephone;
 	private int situation_famille;
 	@ManyToMany
-	private Collection< Competence> competances ;
-	@ManyToMany
 	private Collection< Formation> formations ;
 	@ManyToMany
 	private Collection< Langue> langues ;
@@ -38,6 +38,21 @@ public class Candidat {
 	private Collection< Cv> cvs ;
 	@ManyToOne
 	private  NiveauEtude niveauEtude ;
+	
+	@OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
+    private Set<Entretien> entretiens;
+	
+	@OneToMany(mappedBy = "candidat")
+    Set<CompetenceRating> ratings;
+	
+	public Set<Entretien> getEntretiens() {
+		return entretiens;
+	}
+
+	public void setEntretiens(Set<Entretien> entretiens) {
+		this.entretiens = entretiens;
+	}
+
 	public long getId_condidat() {
 		return id_condidat;
 	}
