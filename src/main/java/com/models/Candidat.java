@@ -1,11 +1,15 @@
 package com.models;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Candidat {
@@ -22,7 +26,18 @@ public class Candidat {
 	private String adresse;
 	private String telephone;
 	private int situation_famille;
-	
+	@ManyToMany
+	private Collection< Competence> competances ;
+	@ManyToMany
+	private Collection< Formation> formations ;
+	@ManyToMany
+	private Collection< Langue> langues ;
+	@ManyToMany
+	private Collection< Loisir> loisirs ;
+	@ManyToMany
+	private Collection< Cv> cvs ;
+	@ManyToOne
+	private  NiveauEtude niveauEtude ;
 	public long getId_condidat() {
 		return id_condidat;
 	}
