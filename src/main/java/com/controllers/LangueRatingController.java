@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.models.Cv;
 import com.models.Entretien;
 import com.models.LangueRating;
+import com.repositories.LangueRatingRepository;
 
 @RestController
 @RequestMapping("/LangueRating")
