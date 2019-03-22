@@ -1,13 +1,12 @@
 package com;
 
 
-import java.sql.Date;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.hamcrest.core.CombinableMatcher;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,9 +15,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.controllers.CandidatController;
 import com.controllers.LangueController;
 import com.controllers.LangueRatingController;
+import com.controllers.LangueRatingRepository;
 import com.models.Candidat;
 import com.models.Langue;
 import com.models.LangueRating;
+import com.models.LangueRatingId;
 import com.models.Candidat;
 import com.models.Competence;
 import com.models.CompetenceRating;
@@ -41,7 +42,7 @@ public class CvBackApplication  implements CommandLineRunner{
 //	@Autowired
 //	private RoleRepository ro;
 	@Autowired
-	LangueRatingController Lrc;
+	LangueRatingRepository Lrc;
 	@Autowired
 	private CompetenceRepository cpr ;
 	
@@ -67,42 +68,15 @@ public class CvBackApplication  implements CommandLineRunner{
 	Langue l2=new Langue("Anglais");
 	Langue l3=new Langue("Arabe");
 	Langue l4=new Langue("Allemend");
-	LangueRating lr=new LangueRating(l, c, 2);
-	LangueRating lr2=new LangueRating(l2, c4,5 );
+	LangueRatingId lri=new LangueRatingId(l, c);
+	LangueRatingId lri2=new LangueRatingId(l2, c2);
+	LangueRating lr=new LangueRating( lri,4);
+	LangueRating lr2=new LangueRating(lri2,5 );
 	
-	Lrc.createLangueRating(lr);
-	Lrc.createLangueRating(lr2);
 	
-    
-		Competence competence1 = new Competence("Java");
-		Competence competence2 = new Competence("Angular");
-		Competence competence3 = new Competence("Php");
 		
-		Candidat candidat1 = new Candidat("Nom","Prenom","A22",new Date(),"photo.jpg","mail@mail.com","adresse1","+2120676",2);
-		Candidat candidat2 = new Candidat("Nom2","Prenom2","A33",new Date(),"photo2.jpg","mail2@mail.com","adresse2","+21206762",2);
-		
-		cpr.save(competence1);
-		cpr.save(competence2);
-		cpr.save(competence3);
-		
-		cdp.save(candidat1);
-		cdp.save(candidat2);
-		
-		CompetenceRatingId cr1 = new CompetenceRatingId(candidat1,competence2);
-		CompetenceRatingId cr2 = new CompetenceRatingId(candidat1,competence1);
-		CompetenceRatingId cr3 = new CompetenceRatingId(candidat1,competence3);
-		CompetenceRatingId cr4 = new CompetenceRatingId(candidat2,competence2);
-		
-		CompetenceRating crr1 = new CompetenceRating(cr1,4);
-		CompetenceRating crr2 = new CompetenceRating(cr2,1);
-		CompetenceRating crr3 = new CompetenceRating(cr3,2);
-		CompetenceRating crr4 = new CompetenceRating(cr4,5);
-
-		crp.save(crr1);
-		crp.save(crr2);
-		crp.save(crr3);
-		crp.save(crr4);
-		
+	Lrc.save(lr);
+	Lrc.save(lr2);
 		
 	}
 }

@@ -43,12 +43,8 @@ public class Candidat {
 	private  NiveauEtude niveauEtude ;
 	@OneToMany
 	private Set< Langue> langues ;
-	 @OneToMany(
-		        mappedBy = "LRating",
-		        cascade = CascadeType.ALL,
-		        orphanRemoval = true
-		    )
-		    private List<LangueRating> LRating = new ArrayList<>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "attacher.candidat",cascade = {CascadeType.ALL})
+    Set<LangueRating> Lratings = new HashSet<LangueRating>(0);
 	@OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
     private Set<Entretien> entretiens;
 	
