@@ -20,6 +20,7 @@ import com.models.Role;
 import com.models.Utilisateur;
 import com.repositories.CandidatRepository;
 import com.repositories.FormationRepository;
+import com.repositories.LangueRepository;
 import com.repositories.LoisirRepository;
 import com.controllers.CandidatController;
 import com.controllers.LangueController;
@@ -69,6 +70,8 @@ public class CvBackApplication  implements CommandLineRunner{
 	private CandidatRepository cr;
 	@Autowired
 	private FormationRepository fr ;
+	@Autowired
+	private LangueRepository lr ;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CvBackApplication.class, args);
@@ -82,49 +85,7 @@ public class CvBackApplication  implements CommandLineRunner{
 	Candidat c3=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
 	Candidat c4=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
 	System.out.println(c);
-	Langue l=new Langue("Francais");
-	Langue l2=new Langue("Anglais");
-	Langue l3=new Langue("Arabe");
-	Langue l4=new Langue("Allemend");
-	LangueRatingId lri=new LangueRatingId(l, c);
-	LangueRatingId lri2=new LangueRatingId(l2, c2);
-	LangueRating lr=new LangueRating( lri,4);
-	LangueRating lr2=new LangueRating(lri2,5 );
+	cr.save(c);
 	
-	
-    
-	
-		Competence competence1 = new Competence("Java");
-		Competence competence2 = new Competence("Angular");
-		Competence competence3 = new Competence("Php");
-		
-		Candidat candidat1 = new Candidat("Nom","Prenom","A22",new Date(),"photo.jpg","mail@mail.com","adresse1","+2120676",2);
-		Candidat candidat2 = new Candidat("Nom2","Prenom2","A33",new Date(),"photo2.jpg","mail2@mail.com","adresse2","+21206762",2);
-		
-		cpr.save(competence1);
-		cpr.save(competence2);
-		cpr.save(competence3);
-		
-		cdp.save(candidat1);
-		cdp.save(candidat2);
-		
-		CompetenceRatingId cr1 = new CompetenceRatingId(candidat1,competence2);
-		CompetenceRatingId cr2 = new CompetenceRatingId(candidat1,competence1);
-		CompetenceRatingId cr3 = new CompetenceRatingId(candidat1,competence3);
-		CompetenceRatingId cr4 = new CompetenceRatingId(candidat2,competence2);
-		
-		CompetenceRating crr1 = new CompetenceRating(cr1,4);
-		CompetenceRating crr2 = new CompetenceRating(cr2,1);
-		CompetenceRating crr3 = new CompetenceRating(cr3,2);
-		CompetenceRating crr4 = new CompetenceRating(cr4,5);
-
-		crp.save(crr1);
-		crp.save(crr2);
-		crp.save(crr3);
-		crp.save(crr4);
-		
-	Lrc.save(lr);
-	Lrc.save(lr2);
-		
 	}
 }

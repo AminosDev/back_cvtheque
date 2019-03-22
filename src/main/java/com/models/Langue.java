@@ -23,7 +23,7 @@ public class Langue {
 	private long id_langue; 
 	private String langue;
 	 @OneToMany(
-		        mappedBy = "LRating",
+		        mappedBy = "attacher.langue",
 		        cascade = CascadeType.ALL,
 		        orphanRemoval = true
 		    )
