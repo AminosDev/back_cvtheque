@@ -15,18 +15,10 @@ public class Formation {
 	private long id_formation; 
 	private String formation;
 	
-	public Formation(String formation, Candidat candidat) {
-		super();
-		this.formation = formation;
-		this.candidat = candidat;
-	}
-
 	@ManyToOne
 	@JoinColumn(name="candidat_id")
 	private Candidat candidat;
-	
-	
-	
+		
 	public Candidat getCandidat() {
 		return candidat;
 	}
@@ -51,10 +43,12 @@ public class Formation {
 		this.formation = formation;
 	}
 	
-	public Formation(String formation) {
+	public Formation(String formation, Candidat candidat) {
 		super();
 		this.formation = formation;
+		this.candidat = candidat;
 	}
+
 	
 	@Override
 	public String toString() {

@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.hamcrest.core.CombinableMatcher;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,13 +20,16 @@ import com.models.Role;
 import com.models.Utilisateur;
 import com.repositories.CandidatRepository;
 import com.repositories.FormationRepository;
+import com.repositories.LangueRepository;
 import com.repositories.LoisirRepository;
 import com.controllers.CandidatController;
 import com.controllers.LangueController;
 import com.controllers.LangueRatingController;
+import com.controllers.LangueRatingRepository;
 import com.models.Candidat;
 import com.models.Langue;
 import com.models.LangueRating;
+import com.models.LangueRatingId;
 import com.models.Candidat;
 import com.models.Competence;
 import com.models.CompetenceRating;
@@ -49,7 +52,7 @@ public class CvBackApplication  implements CommandLineRunner{
 //	@Autowired
 //	private RoleRepository ro;
 	@Autowired
-	LangueRatingController Lrc;
+	LangueRatingRepository Lrc;
 	@Autowired
 	private CompetenceRepository cpr ;
 	
@@ -68,6 +71,9 @@ public class CvBackApplication  implements CommandLineRunner{
 	@Autowired
 	private FormationRepository fr ;
 	
+	@Autowired
+	private LangueRepository lr;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(CvBackApplication.class, args);
 	}
@@ -79,16 +85,30 @@ public class CvBackApplication  implements CommandLineRunner{
 	Candidat c2=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
 	Candidat c3=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
 	Candidat c4=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
+	
+	cr.save(c);
+	cr.save(c2);
+	cr.save(c3);
+	cr.save(c4);
+	
+	
 	System.out.println(c);
+	
 	Langue l=new Langue("Francais");
 	Langue l2=new Langue("Anglais");
 	Langue l3=new Langue("Arabe");
 	Langue l4=new Langue("Allemend");
-	LangueRating lr=new LangueRating(l, c, 2);
-	LangueRating lr2=new LangueRating(l2, c4,5 );
 	
-	Lrc.createLangueRating(lr);
-	Lrc.createLangueRating(lr2);
+	lr.save(l);
+	lr.save(l2);
+	lr.save(l3);
+	lr.save(l4);
+	
+	LangueRatingId lri=new LangueRatingId(l, c);
+	LangueRatingId lri2=new LangueRatingId(l2, c2);
+	LangueRating lr=new LangueRating( lri,4);
+	LangueRating lr2=new LangueRating(lri2,5 );
+	
 	
     
 	
@@ -121,6 +141,8 @@ public class CvBackApplication  implements CommandLineRunner{
 		crp.save(crr3);
 		crp.save(crr4);
 		
+	Lrc.save(lr);
+	Lrc.save(lr2);
 		
 	}
 }

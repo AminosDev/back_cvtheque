@@ -1,9 +1,7 @@
 package com.models;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,8 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -24,7 +20,7 @@ public class Candidat {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id_condidat; 
+	private long id_candidat; 
 	private String nom;
 	private String prenom;
 	private String cin;
@@ -36,19 +32,25 @@ public class Candidat {
 	private int situation_famille;
 	
 	@ManyToMany
-	private Collection< Cv> cvs ;
+	private Collection<Cv> cvs ;
+	
 	@ManyToOne
 	private  NiveauEtude niveauEtude ;
-	@OneToMany
-	private Set< Langue> langues ;
-	 @OneToMany(
-		        mappedBy = "LRating",
-		        cascade = CascadeType.ALL,
-		        orphanRemoval = true
-		    )
-		    private List<LangueRating> LRating = new ArrayList<>();
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "attacher.candidat")
+	private Set<LangueRating> Lratings = new HashSet<LangueRating>(0);
+
 	@OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
     private Set<Entretien> entretiens;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "attacher.candidat")
+	private Set<CompetenceRating> ratings = new HashSet<CompetenceRating>(0);
+	
+	@OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
+	private Set<Loisir> loisirs;
+	
+	@OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
+	private Set<Formation> formations;
 	
 	public Set<CompetenceRating> getRatings() {
 		return ratings;
@@ -57,17 +59,38 @@ public class Candidat {
 	public void setRatings(Set<CompetenceRating> ratings) {
 		this.ratings = ratings;
 	}
+	
+	public Collection<Cv> getCvs() {
+		return cvs;
+	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "attacher.candidat")
-    Set<CompetenceRating> ratings = new HashSet<CompetenceRating>(0);
-	
-	@ManyToMany
-	 Set<Loisir> loisirs;
-	
-	@OneToMany
-	 Set<Formation> formations;
-	
-	
+	public void setCvs(Collection<Cv> cvs) {
+		this.cvs = cvs;
+	}
+
+	public NiveauEtude getNiveauEtude() {
+		return niveauEtude;
+	}
+
+	public void setNiveauEtude(NiveauEtude niveauEtude) {
+		this.niveauEtude = niveauEtude;
+	}
+
+	public Set<LangueRating> getLratings() {
+		return Lratings;
+	}
+
+	public void setLratings(Set<LangueRating> lratings) {
+		Lratings = lratings;
+	}
+
+	public Set<Formation> getFormations() {
+		return formations;
+	}
+
+	public void setFormations(Set<Formation> formations) {
+		this.formations = formations;
+	}
 	
 	public Set<Entretien> getEntretiens() {
 		return entretiens;
@@ -77,12 +100,12 @@ public class Candidat {
 		this.entretiens = entretiens;
 	}
 
-	public long getId_condidat() {
-		return id_condidat;
+	public long getId_candidat() {
+		return id_candidat;
 	}
 	
-	public void setId_condidat(long id_condidat) {
-		this.id_condidat = id_condidat;
+	public void setId_candidat(long id_candidat) {
+		this.id_candidat = id_candidat;
 	}
 	
 	public String getNom() {
@@ -187,7 +210,7 @@ public class Candidat {
 	
 	@Override
 	public String toString() {
-		return "Condidat [id_condidat=" + id_condidat + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin
+		return "Condidat [id_candidat=" + id_candidat + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin
 				+ ", date_naissance=" + date_naissance + ", lien_photo=" + lien_photo + ", mail=" + mail + ", adresse="
 				+ adresse + ", telephone=" + telephone + ", situation_famille=" + situation_famille + "]";
 	}
