@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -31,6 +33,14 @@ public class Candidat {
 	
 	@OneToMany(mappedBy = "candidat")
     Set<CompetenceRating> ratings;
+	
+	@ManyToMany
+	 Set<Loisir> loisirs;
+	
+	@OneToMany
+	 Set<Formation> formations;
+	
+	
 	
 	public Set<Entretien> getEntretiens() {
 		return entretiens;
@@ -108,18 +118,6 @@ public class Candidat {
 		return telephone;
 	}
 	
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-	
-	public int getSituation_famille() {
-		return situation_famille;
-	}
-	
-	public void setSituation_famille(int situation_famille) {
-		this.situation_famille = situation_famille;
-	}
-	
 	public Candidat(String nom, String prenom, String cin, Date date_naissance, String lien_photo, String mail,
 			String adresse, String telephone, int situation_famille) {
 		super();
@@ -132,8 +130,30 @@ public class Candidat {
 		this.adresse = adresse;
 		this.telephone = telephone;
 		this.situation_famille = situation_famille;
+		
+	}
+
+	public Set<Loisir> getLoisirs() {
+		return loisirs;
+	}
+
+	public void setLoisirs(Set<Loisir> loisirs) {
+		this.loisirs = loisirs;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 	
+	public int getSituation_famille() {
+		return situation_famille;
+	}
+	
+	public void setSituation_famille(int situation_famille) {
+		this.situation_famille = situation_famille;
+	}
+	
+
 	public Candidat() {
 		super();
 	}
