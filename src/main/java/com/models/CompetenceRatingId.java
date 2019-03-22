@@ -2,45 +2,49 @@ package com.models;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Embeddable
 public class CompetenceRatingId implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "id_candidat")
-	Long id_candidat;
+	@ManyToOne
+	@JoinColumn(name = "id_candidat")
+	private Candidat candidat;
 	 
-	@Column(name = "id_competence")
-	Long id_competence;
+	@ManyToOne
+	@JoinColumn(name = "id_competence")
+	private Competence competence;
 
-	public Long getId_candidat() {
-		return id_candidat;
+	public Candidat getCandidat() {
+		return candidat;
 	}
 
-	public void setId_candidat(Long id_candidat) {
-		this.id_candidat = id_candidat;
+	public void setCandidat(Candidat candidat) {
+		this.candidat = candidat;
 	}
 
-	public Long getId_competence() {
-		return id_competence;
+	public Competence getCompetence() {
+		return competence;
 	}
 
-	public void setId_competence(Long id_competence) {
-		this.id_competence = id_competence;
+	public void setCompetence(Competence competence) {
+		this.competence = competence;
 	}
 
 	public CompetenceRatingId() {
 		super();
 	}
 
-	public CompetenceRatingId(Long id_candidat, Long id_competence) {
+	public CompetenceRatingId(Candidat candidat, Competence competence) {
 		super();
-		this.id_candidat = id_candidat;
-		this.id_competence = id_competence;
+		this.candidat = candidat;
+		this.competence = competence;
 	}
+
 	
 	
 	

@@ -1,15 +1,22 @@
 package com.models;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -27,12 +34,36 @@ public class Candidat {
 	private String adresse;
 	private String telephone;
 	private int situation_famille;
+	@ManyToMany
+	private Collection< Formation> formations ;
 	
+	@ManyToMany
+	private Collection< Loisir> loisirs ;
+	@ManyToMany
+	private Collection< Cv> cvs ;
+	@ManyToOne
+	private  NiveauEtude niveauEtude ;
+	@OneToMany
+	private Set< Langue> langues ;
+	 @OneToMany(
+		        mappedBy = "LRating",
+		        cascade = CascadeType.ALL,
+		        orphanRemoval = true
+		    )
+		    private List<LangueRating> LRating = new ArrayList<>();
 	@OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
     private Set<Entretien> entretiens;
 	
-	@OneToMany(mappedBy = "candidat")
-    Set<CompetenceRating> ratings;
+	public Set<CompetenceRating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(Set<CompetenceRating> ratings) {
+		this.ratings = ratings;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "attacher.candidat")
+    Set<CompetenceRating> ratings = new HashSet<CompetenceRating>(0);
 	
 	@ManyToMany
 	 Set<Loisir> loisirs;
