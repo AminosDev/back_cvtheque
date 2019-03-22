@@ -16,16 +16,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.models.Candidat;
 import com.models.Formation;
 import com.models.Loisir;
+import com.models.NiveauEtude;
 import com.models.Role;
 import com.models.Utilisateur;
 import com.repositories.CandidatRepository;
 import com.repositories.FormationRepository;
+import com.repositories.LangueRatingRepository;
 import com.repositories.LangueRepository;
 import com.repositories.LoisirRepository;
+import com.repositories.NiveauEtudeRepository;
 import com.controllers.CandidatController;
 import com.controllers.LangueController;
 import com.controllers.LangueRatingController;
-import com.controllers.LangueRatingRepository;
 import com.models.Candidat;
 import com.models.Langue;
 import com.models.LangueRating;
@@ -54,6 +56,8 @@ public class CvBackApplication  implements CommandLineRunner{
 	@Autowired
 	LangueRatingRepository Lrc;
 	@Autowired
+	NiveauEtudeRepository Ner;
+	@Autowired
 	private CompetenceRepository cpr ;
 	
 	@Autowired
@@ -70,8 +74,6 @@ public class CvBackApplication  implements CommandLineRunner{
 	private CandidatRepository cr;
 	@Autowired
 	private FormationRepository fr ;
-	@Autowired
-	private LangueRepository lr ;
 	
 	@Autowired
 	private LangueRepository lr;
@@ -88,7 +90,7 @@ public class CvBackApplication  implements CommandLineRunner{
 	Candidat c3=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
 	Candidat c4=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
 	
-	cr.save(c);
+	
 	cr.save(c2);
 	cr.save(c3);
 	cr.save(c4);
@@ -96,20 +98,11 @@ public class CvBackApplication  implements CommandLineRunner{
 	
 	System.out.println(c);
 	
-	Langue l=new Langue("Francais");
-	Langue l2=new Langue("Anglais");
-	Langue l3=new Langue("Arabe");
-	Langue l4=new Langue("Allemend");
 	
-	lr.save(l);
-	lr.save(l2);
-	lr.save(l3);
-	lr.save(l4);
-	
-	LangueRatingId lri=new LangueRatingId(l, c);
-	LangueRatingId lri2=new LangueRatingId(l2, c2);
-	LangueRating lr=new LangueRating( lri,4);
-	LangueRating lr2=new LangueRating(lri2,5 );
+	NiveauEtude ne=new NiveauEtude("Bac+2");
+	Ner.save(ne);
+	c.setNiveauEtude(ne);
+	cr.save(c);
 	
 	
 	}

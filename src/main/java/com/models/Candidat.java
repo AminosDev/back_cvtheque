@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -30,11 +31,12 @@ public class Candidat {
 	private String adresse;
 	private String telephone;
 	private int situation_famille;
-	
+	/*
 	@ManyToMany
 	private Collection<Cv> cvs ;
-	
+	*/
 	@ManyToOne
+	@JoinColumn(name="id_niveauetude")
 	private  NiveauEtude niveauEtude ;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "attacher.candidat")
@@ -59,15 +61,14 @@ public class Candidat {
 	public void setRatings(Set<CompetenceRating> ratings) {
 		this.ratings = ratings;
 	}
-	
+	/*
 	public Collection<Cv> getCvs() {
 		return cvs;
 	}
-
 	public void setCvs(Collection<Cv> cvs) {
 		this.cvs = cvs;
 	}
-
+*/
 	public NiveauEtude getNiveauEtude() {
 		return niveauEtude;
 	}
