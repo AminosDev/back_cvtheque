@@ -12,13 +12,13 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity(name="LangueRating")
-@Table(name="langue_rating")
-
+@Entity
 public class LangueRating {
+	
 	@Id
 	@JsonIgnore
 	private LangueRatingId attacher = new LangueRatingId();
+	
 	private int LRating ;
 	
 	public void setCandidat(Candidat c) {
@@ -28,7 +28,9 @@ public class LangueRating {
 		attacher.setLangue(l);
 	}
 	public void getCandidat() {this.attacher.getCandidat();}
+	
 	public void getLangue() {this.attacher.getLangue();}
+	
 	public int getLRating() {
 		return LRating;
 	}

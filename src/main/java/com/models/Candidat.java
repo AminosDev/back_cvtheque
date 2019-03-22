@@ -36,13 +36,57 @@ public class Candidat {
 	private int situation_famille;
 	
 	@ManyToMany
-	private Collection< Cv> cvs ;
+	private Collection<Cv> cvs ;
+	
 	@ManyToOne
 	private  NiveauEtude niveauEtude ;
+	
 	@OneToMany
-	private Set< Langue> langues ;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "attacher.candidat",cascade = {CascadeType.ALL})
+	private Set<Langue> langues ;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "attacher.candidat")
     Set<LangueRating> Lratings = new HashSet<LangueRating>(0);
+	
+	public Collection<Cv> getCvs() {
+		return cvs;
+	}
+
+	public void setCvs(Collection<Cv> cvs) {
+		this.cvs = cvs;
+	}
+
+	public NiveauEtude getNiveauEtude() {
+		return niveauEtude;
+	}
+
+	public void setNiveauEtude(NiveauEtude niveauEtude) {
+		this.niveauEtude = niveauEtude;
+	}
+
+	public Set<Langue> getLangues() {
+		return langues;
+	}
+
+	public void setLangues(Set<Langue> langues) {
+		this.langues = langues;
+	}
+
+	public Set<LangueRating> getLratings() {
+		return Lratings;
+	}
+
+	public void setLratings(Set<LangueRating> lratings) {
+		Lratings = lratings;
+	}
+
+	public Set<Formation> getFormations() {
+		return formations;
+	}
+
+	public void setFormations(Set<Formation> formations) {
+		this.formations = formations;
+	}
+
 	@OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
     private Set<Entretien> entretiens;
 	
@@ -58,10 +102,10 @@ public class Candidat {
     Set<CompetenceRating> ratings = new HashSet<CompetenceRating>(0);
 	
 	@ManyToMany
-	 Set<Loisir> loisirs;
+	Set<Loisir> loisirs;
 	
 	@OneToMany
-	 Set<Formation> formations;
+	Set<Formation> formations;
 	
 	
 	
