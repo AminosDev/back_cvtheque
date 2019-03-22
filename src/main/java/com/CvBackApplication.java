@@ -1,5 +1,8 @@
 package com;
 
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -74,26 +77,6 @@ public class CvBackApplication  implements CommandLineRunner{
 	}
 	@Override
 	public void run(String... args) throws Exception {
-	
-		Date d=new Date(1993, 10,23);
-	Candidat c=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
-	Candidat c2=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
-	Candidat c3=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
-	Candidat c4=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
-	
-	
-	cr.save(c2);
-	cr.save(c3);
-	cr.save(c4);
-	
-	
-	System.out.println(c);
-	
-	
-	NiveauEtude ne=new NiveauEtude("Bac+2");
-	Ner.save(ne);
-	c.setNiveauEtude(ne);
-	cr.save(c);
 	
 	
 	}

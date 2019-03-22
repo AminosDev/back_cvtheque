@@ -21,7 +21,7 @@ public class Candidat {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id_condidat; 
+	private long id_candidat; 
 	private String nom;
 	private String prenom;
 	private String cin;
@@ -102,11 +102,11 @@ public class Candidat {
 	}
 
 	public long getId_candidat() {
-		return id_condidat;
+		return id_candidat;
 	}
 	
 	public void setId_candidat(long id_candidat) {
-		this.id_condidat = id_candidat;
+		this.id_candidat = id_candidat;
 	}
 	
 	public String getNom() {
@@ -211,7 +211,7 @@ public class Candidat {
 	
 	@Override
 	public String toString() {
-		return "Condidat [id_candidat=" + id_condidat + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin
+		return "Condidat [id_candidat=" + id_candidat + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin
 				+ ", date_naissance=" + date_naissance + ", lien_photo=" + lien_photo + ", mail=" + mail + ", adresse="
 				+ adresse + ", telephone=" + telephone + ", situation_famille=" + situation_famille + "]";
 	}
