@@ -1,9 +1,7 @@
 package com.models;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,8 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -41,11 +37,28 @@ public class Candidat {
 	@ManyToOne
 	private  NiveauEtude niveauEtude ;
 	
-	@OneToMany
-	private Set<Langue> langues ;
-	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "attacher.candidat")
-    Set<LangueRating> Lratings = new HashSet<LangueRating>(0);
+	private Set<LangueRating> Lratings = new HashSet<LangueRating>(0);
+
+	@OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
+    private Set<Entretien> entretiens;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "attacher.candidat")
+	private Set<CompetenceRating> ratings = new HashSet<CompetenceRating>(0);
+	
+	@OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
+	private Set<Loisir> loisirs;
+	
+	@OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
+	private Set<Formation> formations;
+	
+	public Set<CompetenceRating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(Set<CompetenceRating> ratings) {
+		this.ratings = ratings;
+	}
 	
 	public Collection<Cv> getCvs() {
 		return cvs;
@@ -63,14 +76,6 @@ public class Candidat {
 		this.niveauEtude = niveauEtude;
 	}
 
-	public Set<Langue> getLangues() {
-		return langues;
-	}
-
-	public void setLangues(Set<Langue> langues) {
-		this.langues = langues;
-	}
-
 	public Set<LangueRating> getLratings() {
 		return Lratings;
 	}
@@ -86,28 +91,6 @@ public class Candidat {
 	public void setFormations(Set<Formation> formations) {
 		this.formations = formations;
 	}
-
-	@OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
-    private Set<Entretien> entretiens;
-	
-	public Set<CompetenceRating> getRatings() {
-		return ratings;
-	}
-
-	public void setRatings(Set<CompetenceRating> ratings) {
-		this.ratings = ratings;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "attacher.candidat")
-    Set<CompetenceRating> ratings = new HashSet<CompetenceRating>(0);
-	
-	@ManyToMany
-	Set<Loisir> loisirs;
-	
-	@OneToMany
-	Set<Formation> formations;
-	
-	
 	
 	public Set<Entretien> getEntretiens() {
 		return entretiens;
