@@ -1,6 +1,7 @@
 package com;
 
 
+import java.util.ArrayList;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -12,6 +13,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.models.Candidat;
+import com.models.Formation;
+import com.models.Loisir;
+import com.models.Role;
+import com.models.Utilisateur;
+import com.repositories.CandidatRepository;
+import com.repositories.FormationRepository;
+import com.repositories.LoisirRepository;
 import com.controllers.CandidatController;
 import com.controllers.LangueController;
 import com.controllers.LangueRatingController;
@@ -50,6 +59,15 @@ public class CvBackApplication  implements CommandLineRunner{
 	@Autowired
 	private CompetenceRatingRepository crp;
 	
+	/*@Autowired
+	
+	@Autowired
+	private LoisirRepository lr ;*/
+	@Autowired
+	private CandidatRepository cr;
+	@Autowired
+	private FormationRepository fr ;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(CvBackApplication.class, args);
 	}
@@ -73,6 +91,7 @@ public class CvBackApplication  implements CommandLineRunner{
 	Lrc.createLangueRating(lr2);
 	
     
+	
 		Competence competence1 = new Competence("Java");
 		Competence competence2 = new Competence("Angular");
 		Competence competence3 = new Competence("Php");
