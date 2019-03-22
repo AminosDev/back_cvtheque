@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cv {
@@ -15,7 +17,16 @@ public class Cv {
 	private long id_cv; 
 	private String lien_cv;
 	private Date date_cv;
-	
+	@ManyToOne
+	private Candidat condidat;
+	public Candidat getCondidat() {
+		return condidat;
+	}
+
+	public void setCondidat(Candidat condidat) {
+		this.condidat = condidat;
+	}
+
 	public long getId_cv() {
 		return id_cv;
 	}
