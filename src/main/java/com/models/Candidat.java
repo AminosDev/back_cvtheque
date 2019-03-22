@@ -34,11 +34,7 @@ public class Candidat {
 	private String adresse;
 	private String telephone;
 	private int situation_famille;
-	@ManyToMany
-	private Collection< Formation> formations ;
 	
-	@ManyToMany
-	private Collection< Loisir> loisirs ;
 	@ManyToMany
 	private Collection< Cv> cvs ;
 	@ManyToOne
