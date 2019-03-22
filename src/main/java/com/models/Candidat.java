@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -50,8 +52,16 @@ public class Candidat {
 	@OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
     private Set<Entretien> entretiens;
 	
-	@OneToMany(mappedBy = "candidat")
-    Set<CompetenceRating> ratings;
+	public Set<CompetenceRating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(Set<CompetenceRating> ratings) {
+		this.ratings = ratings;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "attacher.candidat")
+    Set<CompetenceRating> ratings = new HashSet<CompetenceRating>(0);
 	
 	public Set<Entretien> getEntretiens() {
 		return entretiens;

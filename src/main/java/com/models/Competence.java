@@ -1,5 +1,6 @@
 package com.models;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -15,9 +16,17 @@ public class Competence {
 	@ManyToMany(mappedBy = "competences")
 	Set<Rt> rts;
 	
-	@OneToMany(mappedBy = "competence")
-    Set<CompetenceRating> ratings;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "attacher.competence")
+    Set<CompetenceRating> ratings = new HashSet<CompetenceRating>(0);
 		
+	public Set<CompetenceRating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(Set<CompetenceRating> ratings) {
+		this.ratings = ratings;
+	}
+
 	public Set<Rt> getRts() {
 		return rts;
 	}
