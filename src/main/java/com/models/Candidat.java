@@ -13,6 +13,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -22,7 +24,7 @@ public class Candidat {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id_condidat; 
+	private long id_candidat; 
 	private String nom;
 	private String prenom;
 	private String cin;
@@ -32,11 +34,7 @@ public class Candidat {
 	private String adresse;
 	private String telephone;
 	private int situation_famille;
-	@ManyToMany
-	private Collection< Formation> formations ;
 	
-	@ManyToMany
-	private Collection< Loisir> loisirs ;
 	@ManyToMany
 	private Collection< Cv> cvs ;
 	@ManyToOne
@@ -59,6 +57,14 @@ public class Candidat {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "attacher.candidat")
     Set<CompetenceRating> ratings = new HashSet<CompetenceRating>(0);
 	
+	@ManyToMany
+	 Set<Loisir> loisirs;
+	
+	@OneToMany
+	 Set<Formation> formations;
+	
+	
+	
 	public Set<Entretien> getEntretiens() {
 		return entretiens;
 	}
@@ -67,12 +73,12 @@ public class Candidat {
 		this.entretiens = entretiens;
 	}
 
-	public long getId_condidat() {
-		return id_condidat;
+	public long getId_candidat() {
+		return id_candidat;
 	}
 	
-	public void setId_condidat(long id_condidat) {
-		this.id_condidat = id_condidat;
+	public void setId_candidat(long id_candidat) {
+		this.id_candidat = id_candidat;
 	}
 	
 	public String getNom() {
@@ -135,18 +141,6 @@ public class Candidat {
 		return telephone;
 	}
 	
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-	
-	public int getSituation_famille() {
-		return situation_famille;
-	}
-	
-	public void setSituation_famille(int situation_famille) {
-		this.situation_famille = situation_famille;
-	}
-	
 	public Candidat(String nom, String prenom, String cin, Date date_naissance, String lien_photo, String mail,
 			String adresse, String telephone, int situation_famille) {
 		super();
@@ -159,15 +153,37 @@ public class Candidat {
 		this.adresse = adresse;
 		this.telephone = telephone;
 		this.situation_famille = situation_famille;
+		
+	}
+
+	public Set<Loisir> getLoisirs() {
+		return loisirs;
+	}
+
+	public void setLoisirs(Set<Loisir> loisirs) {
+		this.loisirs = loisirs;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 	
+	public int getSituation_famille() {
+		return situation_famille;
+	}
+	
+	public void setSituation_famille(int situation_famille) {
+		this.situation_famille = situation_famille;
+	}
+	
+
 	public Candidat() {
 		super();
 	}
 	
 	@Override
 	public String toString() {
-		return "Condidat [id_condidat=" + id_condidat + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin
+		return "Condidat [id_candidat=" + id_candidat + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin
 				+ ", date_naissance=" + date_naissance + ", lien_photo=" + lien_photo + ", mail=" + mail + ", adresse="
 				+ adresse + ", telephone=" + telephone + ", situation_famille=" + situation_famille + "]";
 	}
