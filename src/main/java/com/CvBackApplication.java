@@ -1,11 +1,14 @@
 package com;
 
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.models.Candidat;
-import com.models.Formation;
+import com.models.Cv;
 import com.models.Loisir;
 import com.models.NiveauEtude;
 import com.models.Role;
@@ -27,11 +30,13 @@ import com.models.Candidat;
 import com.models.Competence;
 import com.models.CompetenceRating;
 import com.models.CompetenceRatingId;
+import com.models.Cv;
 import com.models.Role;
 import com.models.Utilisateur;
 import com.repositories.CandidatRepository;
 import com.repositories.CompetenceRatingRepository;
 import com.repositories.CompetenceRepository;
+import com.repositories.CvRepository;
 import com.repositories.RoleRepository;
 import com.repositories.UtilisateurRepository;
 
@@ -45,7 +50,7 @@ public class CvBackApplication  implements CommandLineRunner{
 //	@Autowired
 //	private RoleRepository ro;
 	@Autowired
-	LangueRatingRepository Lrc;
+	CvRepository Cr;
 	@Autowired
 	NiveauEtudeRepository Ner;
 	@Autowired
@@ -90,11 +95,9 @@ public class CvBackApplication  implements CommandLineRunner{
 	System.out.println(c);
 	
 	
-	NiveauEtude ne=new NiveauEtude("Bac+2");
-	Ner.save(ne);
-	c.setNiveauEtude(ne);
-	cr.save(c);
-	
+	Cv h=new Cv("asjdhasjkdh", d);
+	h.setCondidat(c2);
+	Cr.save(h);
 	
 	}
 }
