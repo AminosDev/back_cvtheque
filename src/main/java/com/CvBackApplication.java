@@ -73,6 +73,9 @@ public class CvBackApplication  implements CommandLineRunner{
 	@Autowired
 	private LangueRepository lr ;
 	
+	@Autowired
+	private LangueRepository lr;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(CvBackApplication.class, args);
 	}
@@ -84,8 +87,30 @@ public class CvBackApplication  implements CommandLineRunner{
 	Candidat c2=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
 	Candidat c3=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
 	Candidat c4=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
-	System.out.println(c);
+	
 	cr.save(c);
+	cr.save(c2);
+	cr.save(c3);
+	cr.save(c4);
+	
+	
+	System.out.println(c);
+	
+	Langue l=new Langue("Francais");
+	Langue l2=new Langue("Anglais");
+	Langue l3=new Langue("Arabe");
+	Langue l4=new Langue("Allemend");
+	
+	lr.save(l);
+	lr.save(l2);
+	lr.save(l3);
+	lr.save(l4);
+	
+	LangueRatingId lri=new LangueRatingId(l, c);
+	LangueRatingId lri2=new LangueRatingId(l2, c2);
+	LangueRating lr=new LangueRating( lri,4);
+	LangueRating lr2=new LangueRating(lri2,5 );
+	
 	
 	}
 }
