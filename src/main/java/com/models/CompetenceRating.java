@@ -64,6 +64,11 @@ public class CompetenceRating {
 		this.competence = competence;
 		this.rating = rating;
 	}
+
+	public CompetenceRating() {
+		super();
+	}
+	
     
     
 	

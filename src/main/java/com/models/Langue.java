@@ -1,18 +1,33 @@
 package com.models;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.NaturalIdCache;
 
 @Entity
+
 public class Langue {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id_langue; 
 	private String langue;
-	
+	 @OneToMany(
+		        mappedBy = "LRating",
+		        cascade = CascadeType.ALL,
+		        orphanRemoval = true
+		    )
+		    private List<LangueRating> LRating = new ArrayList<>();
 	public long getId_langue() {
 		return id_langue;
 	}

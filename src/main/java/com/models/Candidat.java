@@ -1,7 +1,9 @@
 package com.models;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -30,15 +32,21 @@ public class Candidat {
 	private int situation_famille;
 	@ManyToMany
 	private Collection< Formation> formations ;
-	@ManyToMany
-	private Collection< Langue> langues ;
+	
 	@ManyToMany
 	private Collection< Loisir> loisirs ;
 	@ManyToMany
 	private Collection< Cv> cvs ;
 	@ManyToOne
 	private  NiveauEtude niveauEtude ;
-	
+	@OneToMany
+	private Set< Langue> langues ;
+	 @OneToMany(
+		        mappedBy = "LRating",
+		        cascade = CascadeType.ALL,
+		        orphanRemoval = true
+		    )
+		    private List<LangueRating> LRating = new ArrayList<>();
 	@OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
     private Set<Entretien> entretiens;
 	
