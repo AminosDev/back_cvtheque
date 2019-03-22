@@ -59,7 +59,7 @@ public LangueRating(Langue langue, Candidat candidat) {
 	super();
 	this.langue = langue;
 	this.condidat = candidat;
-	this.id_langueRating=new LangueRatingId(candidat.getId_condidat(), langue.getId_langue());
+	this.id_langueRating=new LangueRatingId(candidat.getId_candidat(), langue.getId_langue());
 }
 public LangueRating() {
 	super();
