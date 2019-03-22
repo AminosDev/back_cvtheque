@@ -31,10 +31,6 @@ public class Candidat {
 	private String adresse;
 	private String telephone;
 	private int situation_famille;
-	/*
-	@ManyToMany
-	private Collection<Cv> cvs ;
-	*/
 	@ManyToOne
 	@JoinColumn(name="id_niveauetude")
 	private  NiveauEtude niveauEtude ;
@@ -61,14 +57,8 @@ public class Candidat {
 	public void setRatings(Set<CompetenceRating> ratings) {
 		this.ratings = ratings;
 	}
-	/*
-	public Collection<Cv> getCvs() {
-		return cvs;
-	}
-	public void setCvs(Collection<Cv> cvs) {
-		this.cvs = cvs;
-	}
-*/
+	
+
 	public NiveauEtude getNiveauEtude() {
 		return niveauEtude;
 	}

@@ -8,7 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.models.Candidat;
-import com.models.Formation;
+import com.models.Cv;
 import com.models.Loisir;
 import com.models.NiveauEtude;
 import com.models.Role;
@@ -30,13 +30,16 @@ import com.models.Candidat;
 import com.models.Competence;
 import com.models.CompetenceRating;
 import com.models.CompetenceRatingId;
+import com.models.Cv;
 import com.models.Role;
 import com.models.Utilisateur;
 import com.repositories.CandidatRepository;
 import com.repositories.CompetenceRatingRepository;
 import com.repositories.CompetenceRepository;
+import com.repositories.CvRepository;
 import com.repositories.RoleRepository;
 import com.repositories.UtilisateurRepository;
+import com.service.CandidatService;
 
 
 @SpringBootApplication
@@ -48,7 +51,7 @@ public class CvBackApplication  implements CommandLineRunner{
 //	@Autowired
 //	private RoleRepository ro;
 	@Autowired
-	LangueRatingRepository Lrc;
+	CvRepository Cr;
 	@Autowired
 	NiveauEtudeRepository Ner;
 	@Autowired
@@ -64,19 +67,25 @@ public class CvBackApplication  implements CommandLineRunner{
 	
 	@Autowired
 	private LoisirRepository lr ;*/
-	@Autowired
+	/*@Autowired
 	private CandidatRepository cr;
 	@Autowired
 	private FormationRepository fr ;
 	
 	@Autowired
-	private LangueRepository lr;
+	private LangueRepository lr;*/
+	
+	@Autowired 
+	private CandidatService cs;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CvBackApplication.class, args);
 	}
 	@Override
 	public void run(String... args) throws Exception {
+		
+		
+		
 	
 	
 	}
