@@ -41,7 +41,7 @@ public class CvBackApplication  implements CommandLineRunner{
 	}
 	@Override
 	public void run(String... args) throws Exception {
-    
+		
 		Competence competence1 = new Competence("Java");
 		Competence competence2 = new Competence("Angular");
 		Competence competence3 = new Competence("Php");
@@ -65,12 +65,11 @@ public class CvBackApplication  implements CommandLineRunner{
 		CompetenceRating crr2 = new CompetenceRating(cr2,1);
 		CompetenceRating crr3 = new CompetenceRating(cr3,2);
 		CompetenceRating crr4 = new CompetenceRating(cr4,5);
-
+		
 		crp.save(crr1);
 		crp.save(crr2);
 		crp.save(crr3);
 		crp.save(crr4);
-		
 		
 	}
 }
