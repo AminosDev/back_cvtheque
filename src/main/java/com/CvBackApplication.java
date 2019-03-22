@@ -41,6 +41,7 @@ import com.repositories.CompetenceRatingRepository;
 import com.repositories.CompetenceRepository;
 import com.repositories.RoleRepository;
 import com.repositories.UtilisateurRepository;
+import com.service.CandidatService;
 
 
 @SpringBootApplication
@@ -66,21 +67,27 @@ public class CvBackApplication  implements CommandLineRunner{
 	
 	@Autowired
 	private LoisirRepository lr ;*/
-	@Autowired
+	/*@Autowired
 	private CandidatRepository cr;
 	@Autowired
 	private FormationRepository fr ;
 	
 	@Autowired
-	private LangueRepository lr;
+	private LangueRepository lr;*/
+	
+	@Autowired 
+	private CandidatService cs;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CvBackApplication.class, args);
 	}
 	@Override
 	public void run(String... args) throws Exception {
+		
+		
+		
 	
-		Date d=new Date(1993, 10,23);
+	/*	Date d=new Date(1993, 10,23);
 	Candidat c=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
 	Candidat c2=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
 	Candidat c3=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
@@ -142,7 +149,11 @@ public class CvBackApplication  implements CommandLineRunner{
 		crp.save(crr4);
 		
 	Lrc.save(lr);
-	Lrc.save(lr2);
+	Lrc.save(lr2);*/
 		
+		
+		Date d=new Date(1993, 10,23);
+		Candidat c4=new Candidat("nouali", "taza", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
+		cs.save(c4);
 	}
 }
