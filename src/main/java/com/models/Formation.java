@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Formation {
@@ -13,6 +15,18 @@ public class Formation {
 	private long id_formation; 
 	private String formation;
 	
+	@ManyToOne
+	@JoinColumn(name="candidat_id")
+	private Candidat candidat;
+		
+	public Candidat getCandidat() {
+		return candidat;
+	}
+
+	public void setCandidat(Candidat candidat) {
+		this.candidat = candidat;
+	}
+
 	public long getId_formation() {
 		return id_formation;
 	}
@@ -29,10 +43,12 @@ public class Formation {
 		this.formation = formation;
 	}
 	
-	public Formation(String formation) {
+	public Formation(String formation, Candidat candidat) {
 		super();
 		this.formation = formation;
+		this.candidat = candidat;
 	}
+
 	
 	@Override
 	public String toString() {

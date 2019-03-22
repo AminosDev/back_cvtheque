@@ -1,5 +1,6 @@
 package com.models;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -28,8 +31,26 @@ public class Candidat {
 	private String telephone;
 	private int situation_famille;
 	
+	@ManyToMany
+	private Collection<Cv> cvs ;
+	
+	@ManyToOne
+	private  NiveauEtude niveauEtude ;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "attacher.candidat")
+	private Set<LangueRating> Lratings = new HashSet<LangueRating>(0);
+
 	@OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
     private Set<Entretien> entretiens;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "attacher.candidat")
+	private Set<CompetenceRating> ratings = new HashSet<CompetenceRating>(0);
+	
+	@OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
+	private Set<Loisir> loisirs;
+	
+	@OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
+	private Set<Formation> formations;
 	
 	public Set<CompetenceRating> getRatings() {
 		return ratings;
@@ -38,9 +59,38 @@ public class Candidat {
 	public void setRatings(Set<CompetenceRating> ratings) {
 		this.ratings = ratings;
 	}
+	
+	public Collection<Cv> getCvs() {
+		return cvs;
+	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "attacher.candidat")
-    Set<CompetenceRating> ratings = new HashSet<CompetenceRating>(0);
+	public void setCvs(Collection<Cv> cvs) {
+		this.cvs = cvs;
+	}
+
+	public NiveauEtude getNiveauEtude() {
+		return niveauEtude;
+	}
+
+	public void setNiveauEtude(NiveauEtude niveauEtude) {
+		this.niveauEtude = niveauEtude;
+	}
+
+	public Set<LangueRating> getLratings() {
+		return Lratings;
+	}
+
+	public void setLratings(Set<LangueRating> lratings) {
+		Lratings = lratings;
+	}
+
+	public Set<Formation> getFormations() {
+		return formations;
+	}
+
+	public void setFormations(Set<Formation> formations) {
+		this.formations = formations;
+	}
 	
 	public Set<Entretien> getEntretiens() {
 		return entretiens;
@@ -50,12 +100,12 @@ public class Candidat {
 		this.entretiens = entretiens;
 	}
 
-	public long getId_condidat() {
+	public long getId_candidat() {
 		return id_condidat;
 	}
 	
-	public void setId_condidat(long id_condidat) {
-		this.id_condidat = id_condidat;
+	public void setId_candidat(long id_candidat) {
+		this.id_condidat = id_candidat;
 	}
 	
 	public String getNom() {
@@ -118,18 +168,6 @@ public class Candidat {
 		return telephone;
 	}
 	
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
-	
-	public int getSituation_famille() {
-		return situation_famille;
-	}
-	
-	public void setSituation_famille(int situation_famille) {
-		this.situation_famille = situation_famille;
-	}
-	
 	public Candidat(String nom, String prenom, String cin, Date date_naissance, String lien_photo, String mail,
 			String adresse, String telephone, int situation_famille) {
 		super();
@@ -142,15 +180,37 @@ public class Candidat {
 		this.adresse = adresse;
 		this.telephone = telephone;
 		this.situation_famille = situation_famille;
+		
+	}
+
+	public Set<Loisir> getLoisirs() {
+		return loisirs;
+	}
+
+	public void setLoisirs(Set<Loisir> loisirs) {
+		this.loisirs = loisirs;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 	
+	public int getSituation_famille() {
+		return situation_famille;
+	}
+	
+	public void setSituation_famille(int situation_famille) {
+		this.situation_famille = situation_famille;
+	}
+	
+
 	public Candidat() {
 		super();
 	}
 	
 	@Override
 	public String toString() {
-		return "Condidat [id_condidat=" + id_condidat + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin
+		return "Condidat [id_candidat=" + id_condidat + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin
 				+ ", date_naissance=" + date_naissance + ", lien_photo=" + lien_photo + ", mail=" + mail + ", adresse="
 				+ adresse + ", telephone=" + telephone + ", situation_famille=" + situation_famille + "]";
 	}
