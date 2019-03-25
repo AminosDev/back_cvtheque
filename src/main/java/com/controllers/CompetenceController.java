@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dto.competenceDto;
 import com.models.Competence;
 import com.repositories.CompetenceRepository;
+
+import annotations.Dto;
 
 
 @RestController
@@ -25,13 +28,15 @@ public class CompetenceController {
 	private CompetenceRepository cr; 
 	
 	@GetMapping("/list")
+	@Dto(competenceDto.class)
 	public List<Competence>getCompetences(){
 		return cr.findAll();
 	}
 	
 	@GetMapping("/list/{id}")
-	public Optional<Competence> getCompetence(@PathVariable Long id){
-		return cr.findById(id);
+	@Dto(competenceDto.class)
+	public Competence getCompetence(@PathVariable Long id){
+		return cr.findById(id).get();
 	}
 	
 	@PostMapping("/save")

@@ -6,6 +6,9 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Embeddable
 public class CompetenceRatingId implements Serializable {
 	
@@ -18,7 +21,6 @@ public class CompetenceRatingId implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "id_competence")
 	private Competence competence;
-
 	public Candidat getCandidat() {
 		return candidat;
 	}

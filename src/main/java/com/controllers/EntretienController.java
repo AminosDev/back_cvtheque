@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dto.entretienDto;
 import com.models.Entretien;
 import com.repositories.EntretienRepository;
+
+import annotations.Dto;
 
 
 @RestController
@@ -25,13 +28,15 @@ public class EntretienController {
 	private EntretienRepository ep; 
 	
 	@GetMapping("/list")
+	@Dto(entretienDto.class)
 	public List<Entretien>getEntretiens(){
 		return ep.findAll();
 	}
 	
 	@GetMapping("/list/{id}")
-	public Optional<Entretien> getEntretien(@PathVariable Long id){
-		return ep.findById(id);
+	@Dto(entretienDto.class)
+	public Entretien getEntretien(@PathVariable Long id){
+		return ep.findById(id).get();
 	}
 	
 	@PostMapping("/save")

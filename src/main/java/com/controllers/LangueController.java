@@ -30,8 +30,8 @@ public class LangueController {
 	}
 	
 	@GetMapping("/list/{id}")
-	public Optional<Langue> getLangue(@PathVariable Long id){
-		return lp.findById(id);
+	public Langue getLangue(@PathVariable Long id){
+		return lp.findById(id).get();
 	}
 	
 	@PostMapping("/save")

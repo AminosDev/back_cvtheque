@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dto.formationDto;
 import com.models.Formation;
 import com.repositories.FormationRepository;
+
+import annotations.Dto;
 
 
 @RestController
@@ -25,13 +28,15 @@ public class FormationController {
 	private FormationRepository fp; 
 	
 	@GetMapping("/list")
+	@Dto(formationDto.class)
 	public List<Formation>getFormations(){
 		return fp.findAll();
 	}
 	
 	@GetMapping("/list/{id}")
-	public Optional<Formation> getFormation(@PathVariable Long id){
-		return fp.findById(id);
+	@Dto(formationDto.class)
+	public Formation getFormation(@PathVariable Long id){
+		return fp.findById(id).get();
 	}
 	
 	@PostMapping("/save")

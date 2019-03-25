@@ -30,8 +30,8 @@ public class NiveauEtudeController {
 	}
 	
 	@GetMapping("/list/{id}")
-	public Optional<NiveauEtude> getNiveauEtude(@PathVariable Long id){
-		return np.findById(id);
+	public NiveauEtude getNiveauEtude(@PathVariable Long id){
+		return np.findById(id).get();
 	}
 	
 	@PostMapping("/save")

@@ -16,7 +16,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class LangueRating {
 	
 	@Id
-	@JsonIgnore
 	private LangueRatingId attacher = new LangueRatingId();
 	
 	private int LRating ;
@@ -27,12 +26,16 @@ public class LangueRating {
 	public void setLangue(Langue l) {
 		attacher.setLangue(l);
 	}
-	public void getCandidat() {this.attacher.getCandidat();}
+	public Candidat getCandidat() {return this.attacher.getCandidat();}
 	
-	public void getLangue() {this.attacher.getLangue();}
+	public Langue getLangue() {return this.attacher.getLangue();}
 	
 	public int getLRating() {
 		return LRating;
+	}
+	@Override
+	public String toString() {
+		return "LangueRating [attacher=" + attacher + ", LRating=" + LRating + "]";
 	}
 	public void setLRating(int lRating) {
 		LRating = lRating;

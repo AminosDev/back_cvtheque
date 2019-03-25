@@ -30,8 +30,8 @@ public class EntretienStatutController {
 	}
 	
 	@GetMapping("/list/{id}")
-	public Optional<EntretienStatut> getEntretienStatut(@PathVariable Long id){
-		return ep.findById(id);
+	public EntretienStatut getEntretienStatut(@PathVariable Long id){
+		return ep.findById(id).get();
 	}
 	
 	@PostMapping("/save")

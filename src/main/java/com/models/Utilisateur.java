@@ -2,16 +2,24 @@ package com.models;
 
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 
 @Entity
+
 public class Utilisateur {
 	
 	@Id
@@ -29,17 +37,37 @@ public class Utilisateur {
 	@JoinColumn(name="role_id")
 	private Role role ;
 	
+	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
+    private Set<Entretien> entretiens;
+
+	public long getId_utilisateur() {
+		return id_utilisateur;
+	}
+
+	@Override
+	public String toString() {
+		return "Utilisateur [id_utilisateur=" + id_utilisateur + ", nom=" + nom + ", prenom=" + prenom + ", mail="
+				+ mail + ", lien_image=" + lien_image + ", last_login=" + last_login + ", matricule=" + matricule
+				+ ", mdp=" + mdp + ", role=" + role + ", entretiens=" + entretiens + "]";
+	}
+
+	public void setId_utilisateur(long id_utilisateur) {
+		this.id_utilisateur = id_utilisateur;
+	}
+
+	public Set<Entretien> getEntretiens() {
+		return entretiens;
+	}
+
+	public void setEntretiens(Set<Entretien> entretiens) {
+		this.entretiens = entretiens;
+	}
+
 	public Utilisateur() {
 		super();
 	}
 	
-	public Long getId() {
-		return this.id_utilisateur;
-	}
 	
-	public void setId(Long id_utilisateur) {
-		this.id_utilisateur=id_utilisateur;
-	}
 	
 	public Role getRole() {
 		return role;

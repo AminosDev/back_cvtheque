@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dto.utilisateurDto;
 import com.models.Utilisateur;
 import com.repositories.UtilisateurRepository;
+
+import annotations.Dto;
 
 
 @RestController
@@ -26,13 +29,15 @@ public class UtilisateurController {
 	private UtilisateurRepository ur;
 	
 	@GetMapping("/list")
+	@Dto(utilisateurDto.class)
 	public List<Utilisateur> getUtilisateur(){
 		return ur.findAll();
 	}
 	
 	@GetMapping("/list/{id}")
-	public Optional<Utilisateur> getUser(@PathVariable Long id){
-		return ur.findById(id);
+	@Dto(utilisateurDto.class)
+	public Utilisateur getUser(@PathVariable Long id){
+		return ur.findById(id).get();
 	}
 	
 	@PostMapping("/save")

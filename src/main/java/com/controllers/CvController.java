@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dto.cvDto;
 import com.models.Cv;
 import com.repositories.CvRepository;
+
+import annotations.Dto;
 
 
 @RestController
@@ -25,13 +28,15 @@ public class CvController {
 	private CvRepository cr; 
 	
 	@GetMapping("/list")
+	@Dto(cvDto.class)
 	public List<Cv>getCvs(){
 		return cr.findAll();
 	}
 	
 	@GetMapping("/list/{id}")
-	public Optional<Cv> getCv(@PathVariable Long id){
-		return cr.findById(id);
+	@Dto(cvDto.class)
+	public Cv getCv(@PathVariable Long id){
+		return cr.findById(id).get();
 	}
 	
 	@PostMapping("/save")
