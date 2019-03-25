@@ -38,11 +38,10 @@ public class condidatDto {
 	
 	@JsonIgnoreProperties({"candidat"})
 	private Set<langueRatingDto> Lratings ;
-	
 	@JsonIgnoreProperties({"candidat"})
     private Set<entretienDto> entretiens;
 	@JsonIgnoreProperties({"candidat"})
-	private Set<competanceRatingDto> competancesNdRatings;
+	private Set<competanceRatingDto> ratings;
 	@JsonIgnoreProperties({"candidat"})
 	private Set<Loisir> loisirs;
 	@JsonIgnoreProperties({"candidat"})
@@ -117,10 +116,10 @@ public class condidatDto {
 	}
 	
 	public Set<competanceRatingDto> getRatings() {
-		return competancesNdRatings;
+		return ratings;
 	}
 	public void setRatings(Set<competanceRatingDto> ratings) {
-		this.competancesNdRatings = ratings;
+		this.ratings = ratings;
 	}
 	public Set<langueRatingDto> getLratings() {
 		return Lratings;
