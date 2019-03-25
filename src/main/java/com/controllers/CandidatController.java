@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dto.condidatDto;
 import com.models.Candidat;
 import com.repositories.CandidatRepository;
+import com.service.CandidatService;
 
 import annotations.Dto;
 
@@ -27,12 +28,12 @@ import annotations.Dto;
 public class CandidatController {
 
 	@Autowired 
-	private CandidatRepository cr; 
+	private CandidatService cr; 
 	
 	@GetMapping("/list")
 	@Dto(condidatDto.class)
 	public List<Candidat>getCandidats(){
-		return cr.findAll();
+		return cr.getAllCandidat();
 	}
 	
 	@GetMapping("/list/{id}")
@@ -43,17 +44,19 @@ public class CandidatController {
 	
 	@PostMapping("/save")
 	public Candidat createCandidat(@RequestBody Candidat c){
-		return cr.save(c);
+		cr.saveCandidat(c);
+		return c;
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public Boolean deleteCandidat(@PathVariable Long id){
-		cr.deleteById(id);
+		cr.deleteCandidat(id);
 		return true;
 	}
 	
 	@PutMapping("/update")
 	public Candidat updateCandidat(@RequestBody Candidat c){
-		return cr.save(c);
+		 cr.updateCandidat(c);
+		return c ;
 	}
 }

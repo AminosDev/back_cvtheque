@@ -51,6 +51,7 @@ import com.repositories.EntretienStatutRepository;
 import com.repositories.RoleRepository;
 import com.repositories.UtilisateurRepository;
 import com.service.CandidatService;
+import com.service.UtilisateurService;
 
 
 @SpringBootApplication
@@ -76,6 +77,9 @@ public class CvBackApplication  implements CommandLineRunner{
 	private CompetenceRepository cpr ;
 	
 	@Autowired
+	private UtilisateurService us ;
+	
+	@Autowired
 	private CandidatRepository cdp;
 	
 	@Autowired
@@ -98,7 +102,9 @@ public class CvBackApplication  implements CommandLineRunner{
 	private LangueRepository lr;*/
 	
 	@Autowired 
-	private CandidatService cs;
+	private RoleRepository cs;
+	@Autowired
+	private NiveauEtudeRepository nv ;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CvBackApplication.class, args);
@@ -106,8 +112,13 @@ public class CvBackApplication  implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		
-		
+		/*Candidat c=new Candidat("bouzit", "alae", "aa34557", new Date(), "asdasd", "sadfasd", "asdasd", "asdasd",1);
+		NiveauEtude n = new NiveauEtude("ff");
+		nv.save(n);
+		c.setNiveauEtude(n);
+		cs.saveCandidat(c);*/
+		Role r = new Role("admin","add");
+		cs.save(r);
 	
 	}
 }
