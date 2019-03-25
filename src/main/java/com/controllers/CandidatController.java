@@ -39,7 +39,7 @@ public class CandidatController {
 	@GetMapping("/list/{id}")
 	@Dto(condidatDto.class)
 	public Candidat getCandidat(@PathVariable Long id){
-		return cr.findById(id).get();
+		return cr.getCandidat(id).get();
 	}
 	
 	@PostMapping("/save")
