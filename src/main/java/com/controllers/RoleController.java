@@ -30,8 +30,8 @@ public class RoleController {
 	}
 	
 	@GetMapping("/list/{id}")
-	public Optional<Role> getRole(@PathVariable Long id){
-		return ro.findById(id);
+	public Role getRole(@PathVariable Long id){
+		return ro.findById(id).get();
 	}
 	
 	@PostMapping("/save")

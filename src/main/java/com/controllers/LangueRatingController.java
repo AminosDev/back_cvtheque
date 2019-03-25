@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.models.Cv;
-import com.models.Entretien;
+
+import com.dto.langueRatingDto;
+
 import com.models.LangueRating;
 import com.repositories.LangueRatingRepository;
+
+import annotations.Dto;
 
 @RestController
 @RequestMapping("/LangueRating")
@@ -24,13 +27,15 @@ public class LangueRatingController {
 	@Autowired
 	private LangueRatingRepository lrc;
 	@GetMapping("/list")
+	@Dto(langueRatingDto.class)
 	public List<LangueRating>getLangueRating(){
 		return lrc.findAll();
 	}
 	
 	@GetMapping("/list/{id}")
-	public Optional<LangueRating> getEntretien(@PathVariable Long id){
-		return lrc.findById(id);
+	@Dto(langueRatingDto.class)
+	public LangueRating getLangueRating(@PathVariable Long id){
+		return lrc.findById(id).get();
 	}
 	
 	@PostMapping("/save")

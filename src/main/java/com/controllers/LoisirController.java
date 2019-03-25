@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dto.loisirDto;
 import com.models.Loisir;
 import com.repositories.LoisirRepository;
+
+import annotations.Dto;
 
 
 @RestController
@@ -25,13 +28,15 @@ public class LoisirController {
 	private LoisirRepository lp; 
 	
 	@GetMapping("/list")
+	@Dto(loisirDto.class)
 	public List<Loisir>getLoisirs(){
 		return lp.findAll();
 	}
 	
 	@GetMapping("/list/{id}")
-	public Optional<Loisir> getLoisir(@PathVariable Long id){
-		return lp.findById(id);
+	@Dto(loisirDto.class)
+	public Loisir getLoisir(@PathVariable Long id){
+		return lp.findById(id).get();
 	}
 	
 	@PostMapping("/save")

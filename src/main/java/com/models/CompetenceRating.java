@@ -4,12 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 
 @Entity
+
 public class CompetenceRating {
 
 	@Id
-	@JsonIgnore
 	private CompetenceRatingId attacher = new CompetenceRatingId();
  
     private int rating; 

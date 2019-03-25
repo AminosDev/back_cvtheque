@@ -9,14 +9,17 @@ import javax.persistence.ManyToOne;
 
 @Embeddable
 public class LangueRatingId  implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	@ManyToOne
 	@JoinColumn(name = "id_candidat")
 	private Candidat candidat;
 	 
+	@Override
+	public String toString() {
+		return "LangueRatingId [candidat=" + candidat + ", langue=" + langue + "]";
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "id_langue")
 	private Langue langue;

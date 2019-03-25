@@ -8,6 +8,11 @@ import javax.persistence.*;
 @Entity
 public class Rt extends Utilisateur{
 
+	@Override
+	public String toString() {
+		return "Rt [competences=" + competences  + super.toString() + "]";
+	}
+
 	@ManyToMany
 	@JoinTable(
 	name = "rt_competence", 

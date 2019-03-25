@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dto.condidatDto;
 import com.models.Candidat;
 import com.repositories.CandidatRepository;
 import com.service.CandidatService;
+
+import annotations.Dto;
 
 
 @RestController
@@ -26,13 +29,15 @@ public class CandidatController {
 	private CandidatService cr; 
 	
 	@GetMapping("/list")
+	@Dto(condidatDto.class)
 	public List<Candidat>getCandidats(){
 		return cr.getAllCandidat();
 	}
 	
 	@GetMapping("/list/{id}")
-	public Optional<Candidat> getCandidat(@PathVariable Long id){
-		return cr.getCandidat(id);
+	@Dto(condidatDto.class)
+	public Candidat getCandidat(@PathVariable Long id){
+		return cr.findById(id).get();
 	}
 	
 	@PostMapping("/save")

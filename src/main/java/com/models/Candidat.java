@@ -50,6 +50,17 @@ public class Candidat {
 	@OneToMany(mappedBy = "candidat", cascade = CascadeType.ALL)
 	private Set<Formation> formations;
 	
+	@OneToMany (mappedBy = "candidat", cascade = CascadeType.ALL)
+	private Set<Cv> cvs;
+	
+	public Set<Cv> getCvs() {
+		return cvs;
+	}
+
+	public void setCvs(Set<Cv> cvs) {
+		this.cvs = cvs;
+	}
+
 	public Set<CompetenceRating> getRatings() {
 		return ratings;
 	}
@@ -201,7 +212,7 @@ public class Candidat {
 	
 	@Override
 	public String toString() {
-		return "Condidat [id_candidat=" + id_candidat + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin
+		return "Condidat [Cv= "+cvs+" id_candidat=" + id_candidat + ", nom=" + nom + ", prenom=" + prenom + ", cin=" + cin
 				+ ", date_naissance=" + date_naissance + ", lien_photo=" + lien_photo + ", mail=" + mail + ", adresse="
 				+ adresse + ", telephone=" + telephone + ", situation_famille=" + situation_famille + "]";
 	}
