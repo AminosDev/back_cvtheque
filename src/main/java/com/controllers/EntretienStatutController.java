@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.models.EntretienStatut;
 import com.repositories.EntretienStatutRepository;
+import com.service.EntretienStatutService;
 
 
 @RestController
@@ -22,31 +23,33 @@ import com.repositories.EntretienStatutRepository;
 public class EntretienStatutController {
 
 	@Autowired 
-	private EntretienStatutRepository ep; 
+	private EntretienStatutService ep; 
 	
 	@GetMapping("/list")
 	public List<EntretienStatut>getEntretienStatuts(){
-		return ep.findAll();
+		return ep.getAllEntretienStatut();
 	}
 	
 	@GetMapping("/list/{id}")
 	public EntretienStatut getEntretienStatut(@PathVariable Long id){
-		return ep.findById(id).get();
+		return ep.getEntretienStatut(id).get();
 	}
 	
 	@PostMapping("/save")
 	public EntretienStatut createEntretienStatut(@RequestBody EntretienStatut e){
-		return ep.save(e);
+		ep.saveEntretienStatut(e);
+		return e;
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public Boolean deleteEntretienStatut(@PathVariable Long id){
-		ep.deleteById(id);
+		ep.deleteEntretienStatut(id);
 		return true;
 	}
 	
 	@PutMapping("/update")
 	public EntretienStatut updateEntretienStatut(@RequestBody EntretienStatut e){
-		return ep.save(e);
+		ep.saveEntretienStatut(e);
+		return e;
 	}
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dto.cvDto;
 import com.models.Cv;
 import com.repositories.CvRepository;
+import com.service.CvService;
 
 import annotations.Dto;
 
@@ -25,33 +26,35 @@ import annotations.Dto;
 public class CvController {
 
 	@Autowired 
-	private CvRepository cr; 
+	private CvService cr; 
 	
 	@GetMapping("/list")
 	@Dto(cvDto.class)
 	public List<Cv>getCvs(){
-		return cr.findAll();
+		return cr.getAllCv();
 	}
 	
 	@GetMapping("/list/{id}")
 	@Dto(cvDto.class)
 	public Cv getCv(@PathVariable Long id){
-		return cr.findById(id).get();
+		return cr.getCv(id).get();
 	}
 	
 	@PostMapping("/save")
 	public Cv createCv(@RequestBody Cv c){
-		return cr.save(c);
+		cr.saveCv(c);
+		return c;
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public Boolean deleteCv(@PathVariable Long id){
-		cr.deleteById(id);
+		cr.deleteCv(id);
 		return true;
 	}
 	
 	@PutMapping("/update")
 	public Cv updateCv(@RequestBody Cv c){
-		return cr.save(c);
+		cr.saveCv(c);
+		return c;
 	}
 }

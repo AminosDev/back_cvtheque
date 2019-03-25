@@ -18,6 +18,7 @@ import com.dto.langueRatingDto;
 
 import com.models.LangueRating;
 import com.repositories.LangueRatingRepository;
+import com.service.LangueRatingService;
 
 import annotations.Dto;
 
@@ -25,33 +26,35 @@ import annotations.Dto;
 @RequestMapping("/LangueRating")
 public class LangueRatingController {
 	@Autowired
-	private LangueRatingRepository lrc;
+	private LangueRatingService lrc;
 	@GetMapping("/list")
 	@Dto(langueRatingDto.class)
 	public List<LangueRating>getLangueRating(){
-		return lrc.findAll();
+		return lrc.getAllLangueRating();
 	}
 	
 	@GetMapping("/list/{id}")
 	@Dto(langueRatingDto.class)
 	public LangueRating getLangueRating(@PathVariable Long id){
-		return lrc.findById(id).get();
+		return lrc.getLangueRating(id).get();
 	}
 	
 	@PostMapping("/save")
 	public LangueRating createLangueRating(@RequestBody LangueRating e){
-		return lrc.save(e);
+		lrc.saveLangueRating(e);
+		return e;
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public Boolean deleteLangueRating(@PathVariable Long id){
-		lrc.deleteById(id);
+		lrc.deleteLangueRating(id);
 		return true;
 	}
 	
 	@PutMapping("/update")
 	public LangueRating updateLangueRating(@RequestBody LangueRating e){
-		return lrc.save(e);
+		lrc.saveLangueRating(e);
+		return e;
 	}
 	
 	

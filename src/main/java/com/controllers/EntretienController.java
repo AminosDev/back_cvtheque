@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dto.entretienDto;
 import com.models.Entretien;
 import com.repositories.EntretienRepository;
+import com.service.EntretienService;
 
 import annotations.Dto;
 
@@ -25,33 +26,35 @@ import annotations.Dto;
 public class EntretienController {
 
 	@Autowired 
-	private EntretienRepository ep; 
+	private EntretienService ep; 
 	
 	@GetMapping("/list")
 	@Dto(entretienDto.class)
 	public List<Entretien>getEntretiens(){
-		return ep.findAll();
+		return ep.getAllEntretien();
 	}
 	
 	@GetMapping("/list/{id}")
 	@Dto(entretienDto.class)
 	public Entretien getEntretien(@PathVariable Long id){
-		return ep.findById(id).get();
+		return ep.getEntretien(id).get();
 	}
 	
 	@PostMapping("/save")
 	public Entretien createEntretien(@RequestBody Entretien e){
-		return ep.save(e);
+		 ep.saveEntretien(e);
+		return e ;
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public Boolean deleteEntretien(@PathVariable Long id){
-		ep.deleteById(id);
+		ep.deleteEntretien(id);
 		return true;
 	}
 	
 	@PutMapping("/update")
 	public Entretien updateEntretien(@RequestBody Entretien e){
-		return ep.save(e);
+		 ep.saveEntretien(e);
+			return e ;
 	}
 }
