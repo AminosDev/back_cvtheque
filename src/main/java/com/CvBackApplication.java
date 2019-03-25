@@ -40,6 +40,7 @@ import com.repositories.CvRepository;
 import com.repositories.RoleRepository;
 import com.repositories.UtilisateurRepository;
 import com.service.CandidatService;
+import com.service.UtilisateurService;
 
 
 @SpringBootApplication
@@ -49,13 +50,16 @@ public class CvBackApplication  implements CommandLineRunner{
 //	private UtilisateurRepository Ur ;
 //	
 //	@Autowired
-//	private RoleRepository ro;
+	private RoleRepository ro;
 	@Autowired
 	CvRepository Cr;
 	@Autowired
 	NiveauEtudeRepository Ner;
 	@Autowired
 	private CompetenceRepository cpr ;
+	
+	@Autowired
+	private UtilisateurService us ;
 	
 	@Autowired
 	private CandidatRepository cdp;
@@ -76,7 +80,9 @@ public class CvBackApplication  implements CommandLineRunner{
 	private LangueRepository lr;*/
 	
 	@Autowired 
-	private CandidatService cs;
+	private RoleRepository cs;
+	@Autowired
+	private NiveauEtudeRepository nv ;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CvBackApplication.class, args);
@@ -84,11 +90,19 @@ public class CvBackApplication  implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		
-		
+		/*Candidat c=new Candidat("bouzit", "alae", "aa34557", new Date(), "asdasd", "sadfasd", "asdasd", "asdasd",1);
+		NiveauEtude n = new NiveauEtude("ff");
+		nv.save(n);
+		c.setNiveauEtude(n);
+		cs.saveCandidat(c);*/
+		Role r = new Role("admin","add");
+		cs.save(r);
 	
+	Utilisateur u = new Utilisateur( "d", "jdjl"," nd", "nsn", new Date(), "jsj", "eheg",r);
+	us.saveUtilisateur(u);
+		
 	/*	Date d=new Date(1993, 10,23);
-	Candidat c=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
+	
 	Candidat c2=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
 	Candidat c3=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
 	Candidat c4=new Candidat("bouzit", "alae", "aa34557", d, "asdasd", "sadfasd", "asdasd", "asdasd",1);
@@ -105,6 +119,6 @@ public class CvBackApplication  implements CommandLineRunner{
 	Cv h=new Cv("asjdhasjkdh", d);
 	h.setCondidat(c2);
 	Cr.save(h);
-	
+	*/
 	}
 }
