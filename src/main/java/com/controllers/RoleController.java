@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.models.Role;
 import com.repositories.RoleRepository;
+import com.service.RoleService;
 
 
 @RestController
@@ -22,31 +23,33 @@ import com.repositories.RoleRepository;
 public class RoleController {
 
 	@Autowired 
-	private RoleRepository ro; 
+	private RoleService ro; 
 	
 	@GetMapping("/list")
 	public List<Role>getRoles(){
-		return ro.findAll();
+		return ro.getAllRoles();
 	}
 	
 	@GetMapping("/list/{id}")
 	public Role getRole(@PathVariable Long id){
-		return ro.findById(id).get();
+		return ro.getRole(id).get();
 	}
 	
 	@PostMapping("/save")
 	public Role createRole(@RequestBody Role R){
-		return ro.save(R);
+		ro.saveRole(R);
+		return R;
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public Boolean deleteRole(@PathVariable Long id){
-		ro.deleteById(id);
+		ro.deleteRole(id);
 		return true;
 	}
 	
 	@PutMapping("/update")
 	public Role updateRole(@RequestBody Role r){
-		return ro.save(r);
+		ro.saveRole(r);
+		return r;
 	}
 }

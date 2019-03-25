@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,42 +17,46 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dto.competenceDto;
 import com.models.Competence;
 import com.repositories.CompetenceRepository;
+import com.service.CompetenceService;
 
 import annotations.Dto;
 
 
 @RestController
 @RequestMapping("/Competence")
+@CrossOrigin("*")
 public class CompetenceController {
 
 	@Autowired 
-	private CompetenceRepository cr; 
+	private CompetenceService cr; 
 	
 	@GetMapping("/list")
 	@Dto(competenceDto.class)
 	public List<Competence>getCompetences(){
-		return cr.findAll();
+		return cr.getAllCompetence();
 	}
 	
 	@GetMapping("/list/{id}")
 	@Dto(competenceDto.class)
 	public Competence getCompetence(@PathVariable Long id){
-		return cr.findById(id).get();
+		return cr.getCompetence(id).get();
 	}
 	
 	@PostMapping("/save")
 	public Competence createCompetence(@RequestBody Competence c){
-		return cr.save(c);
+		cr.saveCompetence(c);
+		return c;
 	}
 	
 	@DeleteMapping("/delete/{id}")
 	public Boolean deleteCompetence(@PathVariable Long id){
-		cr.deleteById(id);
+		cr.deleteCompetence(id);
 		return true;
 	}
 	
 	@PutMapping("/update")
 	public Competence updateCompetence(@RequestBody Competence c){
-		return cr.save(c);
+		cr.saveCompetence(c);
+		return c;
 	}
 }

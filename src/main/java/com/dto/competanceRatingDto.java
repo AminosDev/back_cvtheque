@@ -13,8 +13,6 @@ public class competanceRatingDto {
 	@JsonIgnoreProperties({"rts","ratings"})
 	private Competence competence; 
 	
-	@JsonIgnoreProperties({"cin","date_naissance","lien_photo","mail","adresse","telephone","situation_famille","niveauEtude","lratings","entretiens","ratings","loisirs","formations","cvs"})
-	private Candidat candidat;
 	private  int rating;
 	
 	
@@ -31,12 +29,7 @@ public class competanceRatingDto {
 	public void setCompetence(Competence competence) {
 		this.competence = competence;
 	}
-	public Candidat getCandidat() {
-		return candidat;
-	}
-	public void setCandidat(Candidat candidat) {
-		this.candidat = candidat;
-	}
+		
 	
 	
 	
