@@ -45,6 +45,11 @@ public class CompetenceRatingId implements Serializable {
 		this.competence = competence;
 	}
 
+	@Override
+	public String toString() {
+		return "CompetenceRatingId [candidat=" + candidat + ", competence=" + competence + "]";
+	}
+
 	
 	
 	

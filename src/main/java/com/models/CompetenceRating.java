@@ -50,6 +50,11 @@ public class CompetenceRating {
 		super();
 	}
 
+	@Override
+	public String toString() {
+		return "CompetenceRating [attacher=" + attacher + ", rating=" + rating + "]";
+	}
+
 	
     
 	
