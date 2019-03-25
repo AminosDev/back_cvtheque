@@ -29,7 +29,7 @@ public class competanceRatingDto {
 	public void setCompetence(Competence competence) {
 		this.competence = competence;
 	}
-	
+		
 	
 	
 	
